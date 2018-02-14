@@ -1,0 +1,17 @@
+segment,dir,time_period,travel_time
+Bathurst-Spadina,EB,AM,8.6
+Bathurst-Spadina,WB,AM,8
+Bathurst-Spadina,EB,PM,7.5
+Bathurst-Spadina,WB,PM,7.6
+Spadina-University,EB,AM,7.8
+Spadina-University,WB,AM,7.5
+Spadina-University,EB,PM,7.5
+Spadina-University,WB,PM,6.8
+University-Yonge,EB,AM,8.7
+University-Yonge,WB,AM,8.2
+University-Yonge,EB,PM,7
+University-Yonge,WB,PM,6.5
+Yonge-Jarvis,EB,AM,5.2
+Yonge-Jarvis,WB,AM,5
+Yonge-Jarvis,EB,PM,5
+Yonge-Jarvis,WB,PM,4.9
