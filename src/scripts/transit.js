@@ -4,6 +4,9 @@ var stbl = JSON.stringify(streetcarbl);
 var stblobj = JSON.parse(stbl);
 var scbldata = JSON.stringify(blgra_data);
 var scblgra = JSON.parse(scbldata);
+var mondata = JSON.stringify(mongra_data);
+var mongra = JSON.parse(mondata);
+
 
 function avg (column) {
   var total = 0;
@@ -187,7 +190,6 @@ function blgraph() {
   outline = nintyfive.concat(five.reverse());
   five.reverse();
 
-
   var bltrace1 = {
     x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
     y: outline,
@@ -259,10 +261,35 @@ function blgraph() {
 
 blgraph();
 
+function mongraphdata() {
+  var mon_centre = [];
+  var mon_initial = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
+  selector = buttonchecker();
+  for (var i = 0; i < scblgra.length; i++){
+    day = new Date(scblgra[i].mon).getDay();
+    currmonth = new Date(scblgra[i].mon).getMonth();
+    currhour = new Date(scblgra[i].mon).getHours();
+    if (selector[0] =="weekday") {
+      if (day!=6 && day!= 0 && selector[1]==scblgra[i].dir && selector[2] == currmonth+1){
+        mon_initial[currhour].push(scblgra[i].travel_time);
+      }
+    } else {
+      if ((day==6 && selector[1] == scblgra[i].dir && selector[2] == currmonth+1)|| (day==0 && selector[1] == scblgra[i].dir && selector[2] == currmonth+1)){
+        mon_initial[currhour].push(scblgra[i].travel_time);
+      }
+    }
+  }
+  for(j=0;j<mon_initial.length;j++){
+    mon_centre.push (parseFloat(avg(mon_initial[j])));
+  }
+  return mon_centre;
+}
+
+
 function mongraph() {
-  var bl_centre = blgraphdata();
-  nintyfive = bl_centre.map(x => x+1);
-  five = bl_centre.map(x => x-0.8);
+  var mon_centre = mongraphdata();
+  nintyfive = mon_centre.map(x => x+1);
+  five = mon_centre.map(x => x-0.8);
   outline = nintyfive.concat(five.reverse());
   five.reverse();
 
@@ -281,7 +308,7 @@ function mongraph() {
 
   var bltrace2 = {
     x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-    y: bl_centre,
+    y: mon_centre,
     line: {color: "rgb(3, 44, 160)"},
     mode: "lines",
     name: "Average",
