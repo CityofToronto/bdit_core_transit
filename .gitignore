@@ -10,6 +10,7 @@ node_modules
 
 #ignore gulpfile-generated directories
 .tmp
+.publish
 dist
 
 #ignore bower-generated directories

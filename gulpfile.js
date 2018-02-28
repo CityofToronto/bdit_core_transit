@@ -60,7 +60,7 @@ let options = {
 core.embeddedApp.createTasks(gulp, options);
 
 gulp.task('gh-deploy', function() {
-  return gulp.src('./dist/**/*')
+  return gulp.src('dist/**/*')
     .pipe(ghPages());
 });
 //Note that you can override any task that createTasks added, by redefining it after the call to createTasks
